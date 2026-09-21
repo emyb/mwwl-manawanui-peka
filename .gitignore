@@ -1,0 +1,5 @@
+_before-cleanup
+_before-cleanup/*
+_images/99-needs-review
+.idea
+node_modules
