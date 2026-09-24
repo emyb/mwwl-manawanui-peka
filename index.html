@@ -293,6 +293,134 @@
             outline: none;
         }
 
+        .zoom-btn {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: inherit;
+            font: inherit;
+            cursor: zoom-in;
+        }
+
+        .zoom-btn:focus-visible {
+            outline: 3px solid #E0A22B;
+            outline-offset: -3px;
+        }
+
+        .zoom-btn .zoom-hint {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(23, 18, 15, 0.75);
+            color: #FDF6EC;
+            pointer-events: none;
+        }
+
+        #lightbox {
+            width: 100vw;
+            height: 100dvh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #FDF6EC;
+            overflow: hidden;
+        }
+
+        #lightbox::backdrop {
+            background: rgba(23, 18, 15, 0.94);
+        }
+
+        #lightbox .lb-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        #lightbox .lb-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 16px 10px var(--gutter-wide);
+        }
+
+        #lightbox .lb-title {
+            margin: 0;
+            font: 600 0.8125rem Archivo, Helvetica, sans-serif;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        #lightbox .lb-close {
+            flex: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(253, 246, 236, 0.35);
+            background: rgba(253, 246, 236, 0.08);
+            color: #FDF6EC;
+            font: 600 20px Archivo, Helvetica, sans-serif;
+            cursor: pointer;
+        }
+
+        #lightbox .lb-close:focus-visible {
+            outline: 2px solid #E0A22B;
+            outline-offset: 2px;
+        }
+
+        #lightbox .lb-close::before {
+            content: "✕";
+            content: "✕" / "";
+        }
+
+        #lightbox .lb-stage {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 var(--gutter-wide) 16px;
+        }
+
+        #lightbox .lb-stage img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 700px) {
+            #lightbox .lb-stage {
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 0 0 16px;
+            }
+
+            #lightbox .lb-stage img {
+                flex: none;
+                max-width: none;
+                max-height: none;
+                width: 900px;
+                border-radius: 0;
+            }
+        }
+
         h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus {
             outline: none;
         }
@@ -433,36 +561,45 @@
                     </li>
                 </ul>
                 <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
-                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column; transform: rotate(1.4deg)">
+                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: The original minute book"
+                                    data-full="images/01-founding-members-2006-07/minute-book-cover-ngahuia-nelson-2006-large.webp" data-title="The original minute book" data-alt="Worn blue A4 exercise book with a handwritten label: Name Ngahuia Nelson, Year 2006, Subject Manawanui Branch.">
                             <img src="images/01-founding-members-2006-07/minute-book-cover-ngahuia-nelson-2006.webp"
                                  width="1050" height="1400" alt="Worn blue A4 exercise book with a handwritten label: Name Ngahuia Nelson, Year 2006, Subject Manawanui Branch." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                            <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
                                     style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
                                 <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
                                     The original minute book</p></figcaption>
                         </figure>
                     </li>
-                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column; transform: rotate(-2deg)">
+                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: First meeting · 26 January 2006"
+                                    data-full="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-1-large.webp" data-title="First meeting · 26 January 2006" data-alt="Handwritten minutes of a meeting on Thursday 26 January 2006, covering an overview of the League and the nominations for secretary and treasurer.">
                             <img src="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-1.webp"
                                  width="1050" height="1400" alt="Handwritten minutes of a meeting on Thursday 26 January 2006, covering an overview of the League and the nominations for secretary and treasurer." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                            <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
                                     style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
                                 <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
                                     First meeting · 26 January 2006</p></figcaption>
                         </figure>
                     </li>
-                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column; transform: rotate(1.6deg)">
+                    <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: First meeting, continued"
+                                    data-full="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-2-large.webp" data-title="First meeting, continued" data-alt="Second page of handwritten minutes: Betty O&#x27;Brien nominated as president, the next meeting set for Thursday 16 February 2006, apologies and membership fees, closed at 7.55pm.">
                             <img src="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-2.webp"
                                  width="1050" height="1400" alt="Second page of handwritten minutes: Betty O&#x27;Brien nominated as president, the next meeting set for Thursday 16 February 2006, apologies and membership fees, closed at 7.55pm." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                            <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
                                     style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
                                 <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
@@ -1516,6 +1653,15 @@
         </section>
 
     </main>
+    <dialog id="lightbox" aria-labelledby="lb-title">
+        <div class="lb-inner">
+            <div class="lb-bar">
+                <p class="lb-title" id="lb-title"></p>
+                <button type="button" class="lb-close" aria-label="Close"></button>
+            </div>
+            <div class="lb-stage"><img alt="" decoding="async"/></div>
+        </div>
+    </dialog>
     <nav id="slide-nav" aria-label="Slides"><span class="sr-only">Slide navigation. Use the left and right arrow keys, or Page Up and Page Down, to move between slides.</span>
     </nav>
     <a id="to-top" href="#slide-0"><span class="sr-only">Back to top</span></a>
@@ -1668,6 +1814,7 @@
         };
         var onKey = function (e) {
             if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+            if (document.querySelector('dialog[open]')) return;
             var t = e.target;
             if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
             var y = window.scrollY;
@@ -1714,6 +1861,41 @@
         }, {threshold: 0.5});
 
         observer.observe(video);
+    })();
+    // Enlarged view for the minute book pages
+    (function () {
+        var dlg = document.getElementById('lightbox');
+        if (!dlg || typeof dlg.showModal !== 'function') return;
+        var img = dlg.querySelector('.lb-stage img');
+        var title = dlg.querySelector('.lb-title');
+        var stage = dlg.querySelector('.lb-stage');
+        var last = null;
+        var open = function (btn) {
+            last = btn;
+            img.src = btn.getAttribute('data-full');
+            img.alt = btn.getAttribute('data-alt') || '';
+            title.textContent = btn.getAttribute('data-title') || '';
+            stage.scrollTop = 0;
+            stage.scrollLeft = 0;
+            document.documentElement.style.overflow = 'hidden';
+            dlg.showModal();
+        };
+        document.querySelectorAll('.zoom-btn').forEach(function (b) {
+            b.addEventListener('click', function () {
+                open(b);
+            });
+        });
+        dlg.querySelector('.lb-close').addEventListener('click', function () {
+            dlg.close();
+        });
+        dlg.addEventListener('click', function (e) {
+            if (e.target === dlg || e.target === stage || e.target.classList.contains('lb-inner')) dlg.close();
+        });
+        dlg.addEventListener('close', function () {
+            document.documentElement.style.overflow = '';
+            img.removeAttribute('src');
+            if (last) last.focus({preventScroll: true});
+        });
     })();
 </script>
 </body>
