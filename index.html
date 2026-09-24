@@ -592,7 +592,7 @@
                             <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: The original minute book"
                                     data-full="images/01-founding-members-2006-07/minute-book-cover-ngahuia-nelson-2006-large.webp" data-title="The original minute book" data-alt="Worn blue A4 exercise book with a handwritten label: Name Ngahuia Nelson, Year 2006, Subject Manawanui Branch.">
                             <img src="images/01-founding-members-2006-07/minute-book-cover-ngahuia-nelson-2006.webp"
-                                 width="1050" height="1400" alt="Worn blue A4 exercise book with a handwritten label: Name Ngahuia Nelson, Year 2006, Subject Manawanui Branch." loading="lazy" decoding="async"
+                                 width="750" height="1000" alt="Worn blue A4 exercise book with a handwritten label: Name Ngahuia Nelson, Year 2006, Subject Manawanui Branch." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
                             <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
@@ -607,7 +607,7 @@
                             <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: First meeting · 26 January 2006"
                                     data-full="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-1-large.webp" data-title="First meeting · 26 January 2006" data-alt="Handwritten minutes of a meeting on Thursday 26 January 2006, covering an overview of the League and the nominations for secretary and treasurer.">
                             <img src="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-1.webp"
-                                 width="1050" height="1400" alt="Handwritten minutes of a meeting on Thursday 26 January 2006, covering an overview of the League and the nominations for secretary and treasurer." loading="lazy" decoding="async"
+                                 width="750" height="1000" alt="Handwritten minutes of a meeting on Thursday 26 January 2006, covering an overview of the League and the nominations for secretary and treasurer." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
                             <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
@@ -622,7 +622,7 @@
                             <button type="button" class="zoom-btn" aria-haspopup="dialog" aria-label="View larger: First meeting, continued"
                                     data-full="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-2-large.webp" data-title="First meeting, continued" data-alt="Second page of handwritten minutes: Betty O&#x27;Brien nominated as president, the next meeting set for Thursday 16 February 2006, apologies and membership fees, closed at 7.55pm.">
                             <img src="images/01-founding-members-2006-07/minute-book-first-meeting-26-jan-2006-page-2.webp"
-                                 width="1050" height="1400" alt="Second page of handwritten minutes: Betty O&#x27;Brien nominated as president, the next meeting set for Thursday 16 February 2006, apologies and membership fees, closed at 7.55pm." loading="lazy" decoding="async"
+                                 width="750" height="1000" alt="Second page of handwritten minutes: Betty O&#x27;Brien nominated as president, the next meeting set for Thursday 16 February 2006, apologies and membership fees, closed at 7.55pm." loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
                             <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
                             <figcaption
@@ -1691,7 +1691,7 @@
                     <button type="button" class="lb-btn lb-close" aria-label="Close" autofocus></button>
                 </div>
             </div>
-            <div class="lb-stage" tabindex="0" role="group" aria-label="Enlarged image"><img alt="" decoding="async"/></div>
+            <div class="lb-stage" tabindex="0" role="group" aria-label="Enlarged image"><img src="data:," alt="" decoding="async"/></div>
         </div>
     </dialog>
     <nav id="slide-nav" aria-label="Slides"><span class="sr-only">Slide navigation. Use the left and right arrow keys, or Page Up and Page Down, to move between slides.</span>
@@ -1960,7 +1960,7 @@
         });
         dlg.addEventListener('close', function () {
             document.documentElement.style.overflow = '';
-            img.removeAttribute('src');
+            img.src = 'data:,';
             btns[idx].focus();
         });
     })();
