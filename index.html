@@ -270,6 +270,29 @@
             border: 0;
         }
 
+        .skip-link {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            z-index: 40;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: #FDF6EC;
+            color: #17120F;
+            font: 600 14px Archivo, Helvetica, sans-serif;
+            transform: translateY(-200%);
+        }
+
+        .skip-link:focus {
+            transform: none;
+            outline: 2px solid #E0A22B;
+            outline-offset: 2px;
+        }
+
+        #main:focus {
+            outline: none;
+        }
+
         h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus {
             outline: none;
         }
@@ -317,15 +340,16 @@
 <body>
 
 <div data-hook="stage" style="font-family: Archivo, Helvetica, sans-serif; background: #17120F">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div aria-hidden="true"
          style="position: fixed; top: 0; left: 0; right: 0; height: 4px; background: rgba(23,18,15,0.82); z-index: 20">
         <div data-hook="bar"
              style="height: 100%; background: #FDF6EC; transform: scaleX(0); transform-origin: 0 50%"></div>
     </div>
-    <main id="main">
+    <main id="main" tabindex="-1">
 
 <section id="slide-0" data-nav-label="Tainui Manawanui Peka" class="hero-section" data-hook="hero"
-                 style="position: relative; z-index: 0; height: 100svh; min-height: 100svh; box-sizing: border-box; overflow: hidden; background: #0047AB; color: #F7F1E7; display: flex; flex-direction: column; justify-content: center; gap: clamp(12px, 2.4vw, 30px); padding: clamp(18px, 5vw, 56px) max(clamp(18px, 5vw, 56px), calc((100vw - 1536px) / 2 + 56px))">
+                 style="position: relative; z-index: 0; height: 100svh; min-height: 100svh; box-sizing: border-box; overflow: hidden; background: #0047AB; color: #F7F1E7; display: flex; flex-direction: column; justify-content: center; gap: clamp(12px, 2.4vw, 30px); padding: clamp(18px, 5vw, 56px) var(--gutter)">
             <div data-hook="heroArt"
                  style="position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: #0047AB">
             </div>
@@ -336,13 +360,13 @@
             <div data-hook="heroInner"
                  style="position: relative; z-index: 2; margin-top: auto; transform-origin: 50% 100%; container-type: inline-size; display: flex; flex-direction: column; gap: clamp(8px, 1.4svh, 16px); text-shadow: 0 2px 20px rgba(23,18,15,0.85)">
                 <p lang="mi"
-                   style="margin: 0; display: flex; flex-wrap: wrap; column-gap: 0.6em; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #E0A22B">
+                   style="margin: 0; display: flex; flex-wrap: wrap; column-gap: 0.6em; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #F4C978">
                     <span style="white-space: nowrap">Te Roopu Waahine Maaori&nbsp;</span>
                     <span style="white-space: nowrap">Toko i te Ora</span>
                 </p>
                 <h1 tabindex="-1"
                     style="margin: 0; font-weight: 700; font-size: min(14cqw, 13svh, 148px); line-height: 0.9; letter-spacing: -0.015em; text-transform: uppercase; color: #FDF6EC">
-                    Tainui<br/>Manawanui<br/>Peka</h1>
+                    Tainui <br/>Manawanui <br/>Peka</h1>
                 <p style="margin: 0; font-weight: 700; font-size: min(5.6cqw, 5.4svh, 46px); letter-spacing: -0.02em; color: #F58AB4; animation: dc-tagline-in 900ms 550ms cubic-bezier(.2,.75,.2,1) both">
                     Through the years —</p>
                 <p style="margin: 0; display: flex; align-items: center; gap: 8px; margin-top: clamp(10px, 2svh, 22px); opacity: 0.7; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #FDF6EC">
@@ -364,7 +388,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 400 1 0; min-width: 200px; max-width: 400px; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -422,7 +446,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1 1 260px; max-width: 436px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -437,7 +461,7 @@
                         </figure>
                     </li>
                     <li style="flex: 1 1 300px; max-width: 380px; display: flex; flex-direction: column">
-                        <ul style="list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 28px">
+                        <ul role="list" style="list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 28px">
                             <li style="flex: 1; position: relative; z-index: 2; display: flex; flex-direction: column; transform: rotate(1.8deg)">
                                 <figure data-reveal=""
                                         style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -483,7 +507,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 440 1 0; min-width: 200px; max-width: 440px; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -527,7 +551,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 520 1 0; min-width: 200px; max-width: 520px; display: flex; flex-direction: column; transform: rotate(2.6deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -583,7 +607,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -612,7 +636,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 3; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -656,7 +680,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 6; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -701,10 +725,10 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1000px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1000px">
                     <li style="flex: 1 1 45%; min-width: 300px; position: relative; z-index: 2; display: flex; flex-direction: column; transform: rotate(1.8deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/06-2010/Nancy%20and%20Betty%20Manawanui%20Kai%202010.webp" width="1174"
                                  height="1400" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto"/>
@@ -718,7 +742,7 @@
                     </li>
                     <li style="flex: 1 1 45%; min-width: 300px; position: relative; z-index: 3; display: flex; flex-direction: column; transform: rotate(-1.2deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/06-2010/Rangatahi%20Contemporary%20Art%20Competition%201st%20Place%20-%20Tainui%20Hui-a-Rohe%202010%20-%20certificate.webp"
                                  width="1400" height="1051" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto"/>
@@ -732,7 +756,7 @@
                     </li>
                     <li style="flex: 1 1 45%; min-width: 300px; position: relative; z-index: 4; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/06-2010/Rangatahi%20Needlecraft%20Competition%201st%20Place%20-%20Tainui%20Hui-a-Rohe%202010.webp"
                                  width="1400" height="1134" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 16px rgba(23,18,15,0.7))"/>
@@ -744,7 +768,7 @@
                     </li>
                     <li style="flex: 1 1 45%; min-width: 300px; position: relative; z-index: 5; display: flex; flex-direction: column; transform: rotate(0deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/06-2010/Senior%20Needlecraft%20Competition%201st%20Place%20-%20Tainui%20Hui-a-Rohe%202010.webp"
                                  width="1400" height="1122" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 16px rgba(23,18,15,0.7))"/>
@@ -769,7 +793,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-3.0deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -799,7 +823,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 3; display: flex; flex-direction: column; transform: rotate(-1.6deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -829,7 +853,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.3333 1 0; min-width: 200px; position: relative; z-index: 5; display: flex; flex-direction: column; transform: rotate(-2.2deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -887,7 +911,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter-wide)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) 22px; width: 100%; max-width: 1400px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) 22px; width: 100%; max-width: 1400px">
                     <li style="flex: 340 1 0; min-width: 200px; max-width: 340px; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -960,7 +984,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px, 4.5vw, 38px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1400px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1400px">
                     <li style="flex: 1 1 0; min-width: 300px; max-width: 600px; display: flex; flex-direction: column;">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.45)">
@@ -1029,17 +1053,16 @@
                     style="margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px">
                     <span style="font-weight: 700; font-size: clamp(36px, 10vw, 86px); line-height: 0.9; letter-spacing: -0.045em; color: #FDF6EC">2024</span>
                     <span class="sr-only">, </span>
-                    <span lang="mi"
-                          style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #17120F">Te reo Maaori · Branch report</span>
+                    <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #17120F"><span lang="mi">Te reo Maaori</span> · Branch report</span>
                 </h2>
             </header>
-            <ul style="list-style: none; margin: 0; isolation: isolate; flex: 1; display: flex; flex-flow: row wrap; align-items: center; align-content: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
+            <ul role="list" style="list-style: none; margin: 0; isolation: isolate; flex: 1; display: flex; flex-flow: row wrap; align-items: center; align-content: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
                 <li style="width: min(100%, 400px); display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                     <figure data-reveal=""
-                            style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                            style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                         <img src="images/14-2024-te-reo/mwwl-manawanui-peka-members-te-ataarangi-te-reo-2024.webp"
                              width="1400" height="1050" alt="" loading="lazy" decoding="async"
-                             style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                             style="display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 50%"/>
                         <figcaption
                                 style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
                             <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
@@ -1051,7 +1074,7 @@
                 </li>
                 <li style="width: min(100%, 400px); display: flex; flex-direction: column; transform: rotate(1.8deg)">
                     <figure data-reveal=""
-                            style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
                         <img src="images/15-2024-tukutuku-and-branch-report/Pakeke%20Branch%20Report%203rd%20Place%20-%20Tainui%20MWWL%20Regional%20Hui%202024.webp"
                              width="1050" height="1400" alt="" loading="lazy" decoding="async"
                              style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1077,7 +1100,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter-wide)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) 22px; width: 100%; max-width: 1400px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) 22px; width: 100%; max-width: 1400px">
                     <li style="flex: 1.0000 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.45)">
@@ -1134,7 +1157,7 @@
                     <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #FDF6EC">Tukutuku</span>
                 </h2>
             </header>
-            <ul style="list-style: none; margin: 0; isolation: isolate; flex: 1; display: flex; flex-flow: row wrap; align-items: center; align-content: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
+            <ul role="list" style="list-style: none; margin: 0; isolation: isolate; flex: 1; display: flex; flex-flow: row wrap; align-items: center; align-content: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
                 <li style="width: min(100%, 400px); display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                     <figure data-reveal=""
                             style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -1163,7 +1186,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 0.6717 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -1208,7 +1231,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.6000 1 0; min-width: 200px; position: relative; z-index: 4; display: flex; flex-direction: column; transform: rotate(2.6deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -1239,7 +1262,7 @@
                         </figure>
                     </li>
                 </ul>
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 0.7500 1 0; min-width: 200px; position: relative; z-index: 6; display: flex; flex-direction: column; transform: rotate(1.2deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(247,241,231,0.07); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.8)">
@@ -1297,7 +1320,7 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1.7136 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
@@ -1341,10 +1364,10 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
                     <li style="flex: 1 1 30%; min-width: 250px; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/21-2026-fascinators/renee%20head%20piece.webp" width="1050" height="1400"
                                  alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1358,7 +1381,7 @@
                     </li>
                     <li style="flex: 1 1 30%; min-width: 250px; display: flex; flex-direction: column; transform: rotate(-1.2deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/21-2026-fascinators/renee%20head%20piece%201.webp" width="1050"
                                  height="1400" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1372,7 +1395,7 @@
                     </li>
                     <li style="flex: 1 1 30%; min-width: 250px; display: flex; flex-direction: column; transform: rotate(1.8deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.1); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
                             <img src="images/21-2026-fascinators/renee%20head%20piece%202.webp" width="1050"
                                  height="1400" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1386,7 +1409,7 @@
                     </li>
                     <li style="flex: 1 1 30%; min-width: 250px; position: relative; z-index: 5; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
                             <img src="images/17-2025-feb-regional-competition/mwwl-regional-conference-fejoia-pickle-finalist.webp"
                                  width="1050" height="1400" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1400,7 +1423,7 @@
                     </li>
                     <li style="flex: 1 1 30%; min-width: 250px; position: relative; z-index: 6; display: flex; flex-direction: column; transform: rotate(1.8deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
                             <img src="images/17-2025-feb-regional-competition/mwwl-regional-conference-taniko-competition-winner.webp"
                                  width="960" height="1280" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1414,7 +1437,7 @@
                     </li>
                     <li style="flex: 1 1 30%; min-width: 250px; position: relative; z-index: 7; display: flex; flex-direction: column; transform: rotate(-1.2deg)">
                         <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.2); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
                             <img src="images/17-2025-feb-regional-competition/mwwl-conference-entry-crochet-breast-awareness-2025.webp"
                                  width="1050" height="1400" alt="" loading="lazy" decoding="async"
                                  style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
@@ -1442,7 +1465,7 @@
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
                 <div style="width: 100%; max-width: 1200px; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.3)">
-                    <iframe id="closing-video"
+                    <iframe id="closing-video" title="Tainui Manawanui Peka history video" loading="lazy"
                             src="https://www.youtube.com/embed/WEWoutBVfVQ?list=PLYdZtM9QQlXs&index=1"
                             width="100%"
                             height="100%"
@@ -1455,7 +1478,7 @@
         </section>
 
     </main>
-    <nav id="slide-nav"><span class="sr-only">Slide navigation. Use the left and right arrow keys, or Page Up and Page Down, to move between slides.</span>
+    <nav id="slide-nav" aria-label="Slides"><span class="sr-only">Slide navigation. Use the left and right arrow keys, or Page Up and Page Down, to move between slides.</span>
     </nav>
     <a id="to-top" href="#slide-0"><span class="sr-only">Back to top</span></a>
 </div>
@@ -1562,11 +1585,8 @@
                 var tip = document.createElement('span');
                 tip.className = 'tip';
                 tip.textContent = label;
-                var cur = document.createElement('span');
-                cur.className = 'sr-only';
                 b.appendChild(pre);
                 b.appendChild(tip);
-                b.appendChild(cur);
                 b.tabIndex = i === 0 ? 0 : -1;
                 b.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1589,13 +1609,12 @@
                 active = idx;
                 buttons.forEach(function (b, i) {
                     b.tabIndex = i === idx ? 0 : -1;
-                    var cur = b.lastChild;
                     if (i === idx) {
                         b.setAttribute('data-current', '');
-                        cur.textContent = ', current slide';
+                        b.setAttribute('aria-current', 'location');
                     } else {
                         b.removeAttribute('data-current');
-                        cur.textContent = '';
+                        b.removeAttribute('aria-current');
                     }
                 });
             }
