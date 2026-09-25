@@ -733,8 +733,54 @@
         }
 
         @media (min-width: 701px) {
-            #slide-16 {
+            #slide-18 {
                 min-height: 100svh;
+            }
+        }
+
+        .trio {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(26px, 5vw, 44px);
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .trio > li {
+            display: flex;
+            flex-direction: column;
+            width: min(100%, 400px);
+        }
+
+        .trio > .trio-mid {
+            order: -1;
+            width: min(100%, 720px);
+        }
+
+        /* Desktop: a smaller group photo, centred vertically between two larger portraits looking in from the edges.
+           --f on an item sets its share of the row (about 4 x its width/height ratio, so heights match) */
+        @media (min-width: 900px) {
+            .trio {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: clamp(28px, 3.5vw, 52px);
+            }
+
+            .trio > li {
+                flex: var(--f, 3) 1 0;
+                width: auto;
+                min-width: 0;
+            }
+
+            .trio > .trio-mid {
+                order: 0;
+                flex: var(--f, 6) 1 0;
+                width: auto;
             }
         }
     </style>
@@ -1758,7 +1804,51 @@
             </div>
         </section>
 
-<section id="slide-14" data-nav-label="2025 · Xmas lunch · the next generation"
+<section id="slide-14" data-nav-label="2025 · Te Ataarangi"
+                 style="position: relative; z-index: 1; background: #E0A22B; color: #17120F; display: flex; flex-direction: column">
+            <header style="position: sticky; top: 0; z-index: 3; background: #E0A22B; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
+                <h2 tabindex="-1"
+                    style="margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px">
+                    <span style="font-weight: 700; font-size: clamp(36px, 10vw, 86px); line-height: 0.9; letter-spacing: -0.045em; color: #A3232B">2025</span>
+                    <span class="sr-only">, </span>
+                    <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #17120F">Te Ataarangi</span>
+                </h2>
+            </header>
+            <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
+                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: center; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
+                    <li style="flex: 1 1 320px; max-width: 560px; display: flex; flex-direction: column; transform: rotate(-1.6deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.12); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                            <img src="images/2025-te-ataarangi/te-ataarangi-class-with-mwwl.webp" width="1400" height="1050"
+                                 alt="People sitting around a long table covered in coloured rods, in a hall with a bright blue wall, with one person seen from behind in a black shirt with a triangle design." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1400 / 1050; object-fit: cover"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Te Ataarangi class</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    With MWWL, 2025.</p></figcaption>
+                        </figure>
+                    </li>
+                    <li style="flex: 1 1 320px; max-width: 560px; display: flex; flex-direction: column; transform: rotate(1.4deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.12); box-shadow: 0 24px 60px -32px rgba(23,18,15,0.7)">
+                            <img src="images/2025-te-ataarangi/te-roopu-waahine-maaori-with-manawanui-peka-members.webp" width="960" height="712"
+                                 alt="A group of people crowded together for a smiling group photo, indoors." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 960 / 712; object-fit: cover"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Te Roopu Waahine Maaori Toko i te Ora o Tainui</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    With some of our Manawanui Peka members.</p></figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+<section id="slide-15" data-nav-label="2025 · Xmas lunch · the next generation"
                  style="position: relative; z-index: 1; background: #2E5E4E; color: #FDF6EC; display: flex; flex-direction: column">
             <header style="position: sticky; top: 0; z-index: 3; background: #2E5E4E; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
                 <h2 tabindex="-1"
@@ -1769,27 +1859,13 @@
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
-                <ul role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-flow: row wrap; align-items: stretch; justify-content: center; gap: clamp(26px, 5vw, 52px) clamp(22px, 4vw, 44px); width: 100%; max-width: 1200px">
-                    <li style="flex: 1.7136 1 0; min-width: 200px; position: relative; z-index: 1; display: flex; flex-direction: column; transform: rotate(-2.4deg)">
+                <ul role="list" class="trio">
+                    <li style="--f: 3; transform: rotate(-1.2deg)">
                         <figure data-reveal=""
                                 style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
-                            <img src="images/14-2025-xmas-lunch/manawanui-peka-xmas-lunch-2025.webp"
-                                 width="1400" height="817" alt="Seven women seated along a long restaurant table, smiling at the camera." loading="lazy" decoding="async"
-                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1400 / 817"/>
-                            <figcaption
-                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
-                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
-                                    Manawanui Xmas lunch</p>
-                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
-                                    Tash, Karen, Lisa, Desi, Lee, Parekotuku, Cheri.</p></figcaption>
-                        </figure>
-                    </li>
-                    <li style="flex: 0.7500 1 0; min-width: 200px; position: relative; z-index: 2; display: flex; flex-direction: column; transform: rotate(1.8deg)">
-                        <figure data-reveal=""
-                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
-                            <img src="images/14-2025-xmas-lunch/renee-and-maani-health-promotion.webp"
-                                 width="1050" height="1400" alt="Woman in a blue top taking a selfie, with a young woman standing behind her." loading="lazy" decoding="async"
-                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1050 / 1400"/>
+                            <img src="images/14-2025-xmas-lunch/renee-and-maani-health-promotion.webp" width="1050" height="1400"
+                                 alt="Woman in a blue top taking a selfie, with a young woman standing behind her." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1050 / 1400; object-fit: cover"/>
                             <figcaption
                                     style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
                                 <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
@@ -1798,11 +1874,39 @@
                                     Renee and Maani, health promotion activity.</p></figcaption>
                         </figure>
                     </li>
+                    <li class="trio-mid" style="--f: 4.8; transform: rotate(0deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <img src="images/14-2025-xmas-lunch/manawanui-peka-xmas-lunch-2025.webp" width="1400" height="817"
+                                 alt="Seven women seated along a long restaurant table, smiling at the camera." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1400 / 817; object-fit: cover"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Manawanui Xmas lunch</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    Tash, Karen, Lisa, Desi, Lee, Parekotuku, Cheri.</p></figcaption>
+                        </figure>
+                    </li>
+                    <li style="--f: 4; transform: rotate(1.2deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(253,246,236,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <img src="images/14-2025-xmas-lunch/renee-and-lee-xmas-heart.webp" width="1050" height="1058"
+                                 alt="Two people in novelty Christmas glasses making a heart shape together with their arms, in front of a small decorated Christmas tree." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 1050 / 1058; object-fit: cover"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Xmas heart</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    Renee and Lee.</p></figcaption>
+                        </figure>
+                    </li>
                 </ul>
             </div>
         </section>
 
-<section id="slide-15" data-nav-label="2026 · Fascinators · June regional competitions"
+<section id="slide-16" data-nav-label="2026 · Fascinators · June regional competitions"
                  style="position: relative; z-index: 1; background: #E2497F; color: #17120F; display: flex; flex-direction: column">
             <header style="position: sticky; top: 0; z-index: 3; background: #E2497F; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
                 <h2 tabindex="-1"
@@ -1902,7 +2006,65 @@
             </div>
         </section>
 
-<section id="slide-16" data-nav-label="History · Tainui Manawanui Peka"
+<section id="slide-17" data-nav-label="2026 · Te Ataarangi · Semester 2"
+                 style="position: relative; z-index: 1; background: #A3232B; color: #FDF6EC; display: flex; flex-direction: column">
+            <header style="position: sticky; top: 0; z-index: 3; background: #A3232B; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
+                <h2 tabindex="-1"
+                    style="margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px">
+                    <span style="font-weight: 700; font-size: clamp(36px, 10vw, 86px); line-height: 0.9; letter-spacing: -0.045em; color: #E0A22B">2026</span>
+                    <span class="sr-only">, </span>
+                    <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #FDF6EC">Te Ataarangi · Semester 2</span>
+                </h2>
+            </header>
+            <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter)">
+                <ul role="list" class="trio">
+                    <li style="transform: rotate(-1.2deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <img src="images/16-2026-te-ataarangi/te-ataarangi-juanita-and-tash-talking.webp" width="1050" height="1400"
+                                 alt="Two people leaning in to talk at a table covered in papers, a printed sheet of words and a basket of coloured rods." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Tuesday night class</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    Juanita and Tash.</p></figcaption>
+                        </figure>
+                    </li>
+                    <li class="trio-mid" style="transform: rotate(0deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <img src="images/16-2026-te-ataarangi/te-ataarangi-kaiako-nancy-lisa-reggie.webp" width="1600" height="721"
+                                 alt="Four people sitting along a long table with coloured rods laid out in patterns in front of them, in a hall with a bright blue wall." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 2048 / 923; object-fit: cover; object-position: 50% 50%"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Te Ataarangi · Tuesday nights</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    Kaiako, Nancy, Lisa and Reggie.</p></figcaption>
+                        </figure>
+                    </li>
+                    <li style="transform: rotate(1.2deg)">
+                        <figure data-reveal=""
+                                style="margin: 0; width: 100%; flex: 1; display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.14); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.6)">
+                            <img src="images/16-2026-te-ataarangi/te-ataarangi-juanita-and-tash-laughing.webp" width="1050" height="1400"
+                                 alt="Two people laughing together at a table, in front of racks of clothes and woven wall hangings." loading="lazy" decoding="async"
+                                 style="display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 50%"/>
+                            <figcaption
+                                    style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px clamp(16px, 3vw, 22px) 16px">
+                                <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                                    Semester 2 · from July</p>
+                                <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                                    Juanita and Tash.</p></figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+<section id="slide-18" data-nav-label="History · Tainui Manawanui Peka"
                  style="position: relative; z-index: 1; background: #0047AB; color: #FDF6EC; display: flex; flex-direction: column">
             <header style="position: sticky; top: 0; z-index: 3; background: #0047AB; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
                 <h2 tabindex="-1"
@@ -2054,6 +2216,7 @@
                 var item = document.createElement('li');
                 var b = document.createElement('a');
                 b.href = '#' + s.id;
+                // the dot takes its slide's background colour
                 var pre = document.createElement('span');
                 pre.className = 'sr-only';
                 pre.textContent = 'Go to ';
