@@ -325,6 +325,102 @@
             pointer-events: none;
         }
 
+        #poster-zoom {
+            width: 100vw;
+            height: 100dvh;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #FDF6EC;
+            overflow: hidden;
+        }
+
+        #poster-zoom::backdrop {
+            background: rgba(23, 18, 15, 0.94);
+        }
+
+        #poster-zoom .pz-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        #poster-zoom .pz-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px var(--gutter-wide);
+        }
+
+        #poster-zoom .pz-title {
+            margin: 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        #poster-zoom .pz-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        #poster-zoom .pz-stage {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            padding: 0 var(--gutter-wide) 16px;
+            display: flex;
+        }
+
+        #poster-zoom .pz-stage img {
+            display: block;
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: zoom-in;
+        }
+
+        #poster-zoom.is-zoomed .pz-stage img {
+            width: 2600px;
+            max-width: none;
+            max-height: none;
+            flex: none;
+            margin: 0;
+            cursor: zoom-out;
+        }
+
+        /* Phone and portrait: close button along the bottom, within thumb reach */
+        @media (max-width: 899px), (orientation: portrait) {
+            #poster-zoom .pz-stage {
+                padding-bottom: 96px;
+            }
+
+            #poster-zoom .pz-actions {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 2;
+                justify-content: center;
+                padding: 24px 20px calc(12px + env(safe-area-inset-bottom));
+                background: linear-gradient(to bottom, rgba(23, 18, 15, 0), rgba(23, 18, 15, 0.92) 55%);
+                pointer-events: none;
+            }
+
+            #poster-zoom .pz-actions .lb-btn {
+                width: 60px;
+                height: 60px;
+                background: rgba(23, 18, 15, 0.7);
+                pointer-events: auto;
+            }
+        }
+
         #lightbox {
             width: 100vw;
             height: 100dvh;
@@ -382,7 +478,7 @@
             gap: 8px;
         }
 
-        #lightbox .lb-btn {
+        #lightbox .lb-btn, #poster-zoom .lb-btn {
             display: grid;
             place-items: center;
             width: 44px;
@@ -397,7 +493,7 @@
             transition: opacity 0.2s;
         }
 
-        #lightbox .lb-btn:hover {
+        #lightbox .lb-btn:hover, #poster-zoom .lb-btn:hover {
             background: rgba(253, 246, 236, 0.18);
         }
 
@@ -406,7 +502,7 @@
             cursor: default;
         }
 
-        #lightbox .lb-btn:focus-visible, #lightbox .lb-stage:focus-visible {
+        #lightbox .lb-btn:focus-visible, #lightbox .lb-stage:focus-visible, #poster-zoom .lb-btn:focus-visible, #poster-zoom .pz-stage:focus-visible {
             outline: 2px solid #E0A22B;
             outline-offset: 2px;
         }
@@ -1584,14 +1680,14 @@
             </ul>
         </section>
 
-<section id="slide-11" data-nav-label="2024 · Hauora promotion"
+<section id="slide-11" data-nav-label="2024 · Hauora promotion · Summer research"
                  style="position: relative; z-index: 1; background: #E0A22B; color: #17120F; display: flex; flex-direction: column">
             <header style="position: sticky; top: 0; z-index: 3; background: #E0A22B; padding: clamp(14px, 3.2vw, 24px) var(--gutter)">
                 <h2 tabindex="-1"
                     style="margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px">
                     <span style="font-weight: 700; font-size: clamp(36px, 10vw, 86px); line-height: 0.9; letter-spacing: -0.045em; color: #A3232B">2024</span>
                     <span class="sr-only">, </span>
-                    <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #17120F">Hauora promotion</span>
+                    <span style="font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #17120F">Hauora promotion · Summer research</span>
                 </h2>
             </header>
             <div style="isolation: isolate; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(36px, 6vw, 64px); padding: clamp(28px, 5vw, 64px) var(--gutter-wide)">
@@ -1639,6 +1735,19 @@
                         </figure>
                     </li>
                 </ul>
+                <figure data-reveal=""
+                        style="margin: 0; width: min(100%, 620px); display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(23,18,15,0.08); box-shadow: 0 24px 60px -32px rgba(0,0,0,0.45)">
+                    <button type="button" class="zoom-btn poster-zoom" aria-haspopup="dialog" aria-label="View larger: Summer research poster">
+                    <img src="images/2024-research-poster/mwwl-relevance-poster-2024.webp"
+                         width="3000" height="2121" alt="Research poster, The Maaori Women's Welfare League: Need, Awareness, Succession, by Kateao Barber-Horne, supervised by Dr Gloria Clarke. Of 54 respondents, 79% were aware of the MWWL, 36% knew of its activities, and 96% were interested in joining and willing to receive support." loading="lazy" decoding="async"
+                         style="display: block; width: 100%; height: auto"/>
+                    <span class="zoom-hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 8v5M8 10.5h5"/></svg></span></button>
+                    <figcaption style="padding: 14px clamp(16px, 3vw, 22px) 16px">
+                        <p style="margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+                            Manawanui &amp; Waikato University summer research</p>
+                        <p style="margin: 0; font-size: 0.875rem; line-height: 1.4; font-weight: 400; opacity: 0.86; margin-top: 6px">
+                            &lsquo;The Relevance of the MWWL in the lives of 54 Wahine Maaori Students 2024&rsquo;.</p></figcaption>
+                </figure>
             </div>
         </section>
 
@@ -2099,6 +2208,17 @@
         </section>
 
     </main>
+    <dialog id="poster-zoom" aria-labelledby="pz-title">
+        <div class="pz-inner">
+            <div class="pz-bar">
+                <p class="pz-title" id="pz-title">Manawanui &amp; Waikato University summer research, 2024</p>
+                <div class="pz-actions">
+                    <button type="button" class="lb-btn pz-close" aria-label="Close" autofocus>&#x2715;</button>
+                </div>
+            </div>
+            <div class="pz-stage" tabindex="0" role="group" aria-label="Enlarged poster"><img src="data:," alt=""/></div>
+        </div>
+    </dialog>
     <dialog id="lightbox" aria-labelledby="lb-title">
         <div class="lb-inner">
             <div class="lb-bar">
@@ -2361,7 +2481,7 @@
         var count = dlg.querySelector('.lb-count');
         var prev = dlg.querySelector('.lb-prev');
         var next = dlg.querySelector('.lb-next');
-        var btns = Array.prototype.slice.call(document.querySelectorAll('.zoom-btn'));
+        var btns = Array.prototype.slice.call(document.querySelectorAll('.zoom-btn:not(.poster-zoom)'));
         var pages = btns.map(function (b) {
             return {
                 src: b.getAttribute('data-full'),
@@ -2631,6 +2751,40 @@
             fill(slotL.firstChild, null);
             fill(slotR.firstChild, null);
             (opener || btns[idx]).focus();
+        });
+    })();
+    // Enlarged poster: fits the screen, then tap or click to zoom to full size and scroll around
+    (function () {
+        var dlg = document.getElementById('poster-zoom');
+        var btn = document.querySelector('.poster-zoom');
+        if (!dlg || !btn || typeof dlg.showModal !== 'function') return;
+        var stage = dlg.querySelector('.pz-stage');
+        var im = stage.querySelector('img');
+        var src = btn.querySelector('img');
+        var set = function (on) {
+            dlg.classList.toggle('is-zoomed', on);
+            stage.scrollTop = 0;
+            stage.scrollLeft = 0;
+        };
+        btn.addEventListener('click', function () {
+            im.src = src.currentSrc || src.src;
+            im.alt = src.alt;
+            set(false);
+            document.documentElement.style.overflow = 'hidden';
+            dlg.showModal();
+        });
+        im.addEventListener('click', function () {
+            set(!dlg.classList.contains('is-zoomed'));
+        });
+        dlg.querySelector('.pz-close').addEventListener('click', function () {
+            dlg.close();
+        });
+        dlg.addEventListener('click', function (e) {
+            if (e.target === dlg || e.target === stage) dlg.close();
+        });
+        dlg.addEventListener('close', function () {
+            document.documentElement.style.overflow = '';
+            btn.focus();
         });
     })();
 </script>
