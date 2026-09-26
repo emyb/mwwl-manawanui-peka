@@ -1,0 +1,425 @@
+/* Story mode: plays the page like a Wrapped story, with an option to scroll yourself */
+
+/* Hero choice: play the story, or scroll yourself */
+.sm-choice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin-top: clamp(14px, 2.6svh, 28px);
+    text-shadow: none;
+    animation: sm-rise 700ms 900ms cubic-bezier(.2, .75, .2, 1) both;
+}
+
+.sm-choice button {
+    font: 700 0.8125rem/1 Archivo, Helvetica, sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    min-height: 48px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sm-play-btn {
+    border: 0;
+    padding: 0 22px 0 8px;
+    background: #FDF6EC;
+    color: #0047AB;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.55);
+    transition: transform 0.2s;
+}
+
+.sm-play-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.sm-play-btn .sm-ring {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #0047AB;
+    color: #FDF6EC;
+}
+
+.sm-play-btn .sm-ring svg.sm-ring-track {
+    position: absolute;
+    inset: -3px;
+    width: 40px;
+    height: 40px;
+    transform: rotate(-90deg);
+    overflow: visible;
+}
+
+.sm-ring-track circle {
+    fill: none;
+    stroke: #E2497F;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 113.1;
+    stroke-dashoffset: 113.1;
+}
+
+.sm-counting .sm-ring-track circle {
+    animation: sm-count var(--sm-count, 4s) linear forwards;
+}
+
+.sm-self-btn {
+    padding: 0 18px;
+    background: transparent;
+    color: #FDF6EC;
+    border: 1px solid rgba(253, 246, 236, 0.45);
+    transition: background 0.2s;
+}
+
+.sm-self-btn:hover {
+    background: rgba(253, 246, 236, 0.12);
+}
+
+.sm-choice button:focus-visible, .sm-dock button:focus-visible, .sm-mini:focus-visible {
+    outline: 2px solid #E0A22B;
+    outline-offset: 3px;
+}
+
+.sm-hint {
+    flex-basis: 100%;
+    margin: 2px 0 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(253, 246, 236, 0.7);
+    min-height: 1em;
+}
+
+/* Wrapped-style progress: one segment per slide */
+.sm-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    gap: 4px;
+    padding: 7px max(10px, env(safe-area-inset-left)) 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+.sm-bar i {
+    flex: 1;
+    height: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(253, 246, 236, 0.28);
+    box-shadow: 0 0 0 0.5px rgba(23, 18, 15, 0.25);
+}
+
+.sm-bar b {
+    display: block;
+    height: 100%;
+    background: #FDF6EC;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+}
+
+html.sm-active .sm-bar {
+    opacity: 1;
+    transform: none;
+}
+
+html.sm-active [data-hook="bar"] {
+    visibility: hidden;
+}
+
+html.sm-active #to-top {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Floating player controls */
+.sm-dock {
+    position: fixed;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 5px;
+    border-radius: 999px;
+    background: rgba(23, 18, 15, 0.82);
+    border: 1px solid rgba(253, 246, 236, 0.16);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.7);
+    transform: translate(-50%, 24px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(.2, .75, .2, 1), opacity 0.3s, visibility 0s linear 0.4s;
+}
+
+html.sm-active .sm-dock {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.sm-dock button {
+    height: 44px;
+    min-width: 44px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #FDF6EC;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sm-dock button:hover {
+    background: rgba(253, 246, 236, 0.12);
+}
+
+.sm-dock .sm-pp {
+    background: #FDF6EC;
+    color: #17120F;
+}
+
+.sm-dock .sm-pp:hover {
+    background: #fff;
+}
+
+.sm-dock .sm-speed {
+    font: 700 13px/1 Archivo, Helvetica, sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    min-width: 46px;
+}
+
+.sm-dock .sm-sep {
+    display: block;
+    width: 1px;
+    height: 22px;
+    margin: 0 6px;
+    background: rgba(253, 246, 236, 0.22);
+}
+
+.sm-dock .sm-stop {
+    padding: 0 14px;
+    font: 600 11px/1 Archivo, Helvetica, sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sm-dock [data-show] {
+    display: none;
+}
+
+.sm-dock[data-state="playing"] [data-show~="playing"],
+.sm-dock[data-state="paused"] [data-show~="paused"],
+.sm-dock[data-state="ended"] [data-show~="ended"] {
+    display: grid;
+}
+
+/* Desktop (mouse): the bar fades away while playing, and comes back when the mouse moves */
+@media (min-width: 700px) and (hover: hover) and (pointer: fine) {
+    html.sm-idle .sm-dock[data-state="playing"]:not(:focus-within):not(:hover) {
+        opacity: 0;
+        transform: translate(-50%, 12px);
+        transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+}
+
+/* Phones and tablets: a single pause button in the thumb corner.
+   Tapping it (or tapping the page) pauses, and the rest of the controls slide out beside it. */
+@media (max-width: 699px), (pointer: coarse) {
+    .sm-dock {
+        left: auto;
+        right: max(14px, env(safe-area-inset-right));
+        transform: translateY(24px);
+    }
+
+    html.sm-active .sm-dock {
+        transform: none;
+    }
+
+    .sm-dock .sm-pp {
+        order: 10;
+        width: 50px;
+        height: 50px;
+    }
+
+    .sm-dock .sm-stop { order: 1; }
+    .sm-dock .sm-sep { order: 2; }
+    .sm-dock .sm-speed { order: 3; }
+    .sm-dock .sm-prev { order: 4; }
+    .sm-dock .sm-next { order: 5; }
+
+    .sm-dock .sm-x {
+        max-width: 150px;
+        overflow: hidden;
+        transition: max-width 0.4s cubic-bezier(.2, .75, .2, 1), min-width 0.4s cubic-bezier(.2, .75, .2, 1),
+        padding 0.4s cubic-bezier(.2, .75, .2, 1), margin 0.4s cubic-bezier(.2, .75, .2, 1),
+        opacity 0.25s 0.1s, visibility 0s;
+    }
+
+    .sm-dock[data-state="playing"] {
+        padding: 4px;
+        gap: 0;
+    }
+
+    /* speed stays out while playing, so it can be changed without pausing */
+    .sm-dock[data-state="playing"] .sm-x:not(.sm-speed) {
+        max-width: 0;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-width 0.35s cubic-bezier(.2, .75, .2, 1), min-width 0.35s cubic-bezier(.2, .75, .2, 1),
+        padding 0.35s cubic-bezier(.2, .75, .2, 1), margin 0.35s cubic-bezier(.2, .75, .2, 1),
+        opacity 0.15s, visibility 0s linear 0.35s;
+    }
+}
+
+/* Small "play" pill while scrolling yourself */
+.sm-mini {
+    position: fixed;
+    left: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 30;
+    height: 44px;
+    padding: 0 16px 0 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(253, 246, 236, 0.35);
+    background: rgba(23, 18, 15, 0.75);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #FDF6EC;
+    font: 600 11px/1 Archivo, Helvetica, sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0s linear 0.2s;
+}
+
+.sm-mini.show {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+}
+
+html.sm-active .sm-mini {
+    display: none;
+}
+
+/* Entrances while playing: the year pops in, the label slides across */
+.sm-in h2 > span:first-child {
+    display: inline-block;
+    animation: sm-year 1000ms 250ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.sm-in h2 > span:last-child {
+    animation: sm-label 800ms 520ms cubic-bezier(.2, .75, .2, 1) both;
+}
+
+/* Slow push-in on the photos being looked at */
+html.sm-active figure img {
+    transition: transform 1.2s cubic-bezier(.2, .75, .2, 1);
+}
+
+html.sm-active figure.sm-kb img {
+    transform: scale(1.07);
+    transition: transform var(--sm-kb, 7s) linear;
+}
+
+/* Ending: a gentle glow on the video */
+.sm-glow {
+    animation: sm-glow 2.4s ease-in-out 3;
+}
+
+@keyframes sm-count {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes sm-rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+}
+
+@keyframes sm-year {
+    0% {
+        opacity: 0;
+        transform: translateY(0.35em) scale(1.35);
+        filter: blur(10px);
+    }
+    60% {
+        opacity: 1;
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}
+
+@keyframes sm-label {
+    from {
+        opacity: 0;
+        transform: translateX(-28px);
+        letter-spacing: 0.5em;
+    }
+}
+
+@keyframes sm-glow {
+    50% {
+        box-shadow: 0 0 0 6px rgba(253, 246, 236, 0.5), 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media (max-width: 420px) {
+    .sm-dock .sm-stop {
+        padding: 0 10px;
+        letter-spacing: 0.1em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sm-choice, .sm-in h2 > span, .sm-glow {
+        animation: none !important;
+    }
+
+    html.sm-active figure.sm-kb img, html.sm-active figure img {
+        transform: none;
+        transition: none;
+    }
+
+    .sm-bar, .sm-dock, .sm-mini {
+        transition: none;
+    }
+}
