@@ -436,7 +436,7 @@
         if (mid) {
             // resuming part way down: count the progress already made
             var span = Math.max(1, p.bottom - p.sTop);
-            slideDone = HEAD + p.roll * clamp((window.scrollY - p.sTop) / span, 0, 1);
+            slideDone = p.total * clamp((window.scrollY - p.sTop) / span, 0, 1);
             chain = Promise.resolve();
         } else {
             enter(i);
@@ -604,6 +604,28 @@
         mini.classList.toggle('show', state === 'manual' && window.scrollY > window.innerHeight * 0.6);
     };
     window.addEventListener('scroll', updateMini, {passive: true});
+
+    // While paused, the progress bar follows the reader's own scrolling
+    var barRaf = 0;
+    var trackScroll = function () {
+        barRaf = 0;
+        if (state !== 'paused') return;
+        var y = window.scrollY, line = y + window.innerHeight * 0.35, idx = 0;
+        slides.forEach(function (s, i) {
+            if (pageTop(s) <= line) idx = i;
+        });
+        var s = slides[idx];
+        var sTop = pageTop(s);
+        var span = s.offsetHeight - window.innerHeight;
+        var f = span > 40 ? clamp((y - sTop) / span, 0, 1) : (y >= sTop - 2 ? 1 : 0);
+        cur = idx;
+        slideTotal = 1;
+        slideDone = f;
+        paintBar();
+    };
+    window.addEventListener('scroll', function () {
+        if (state === 'paused' && !barRaf) barRaf = requestAnimationFrame(trackScroll);
+    }, {passive: true});
 
     // The reader taking over: scrolling or tapping pauses; during the countdown it means "I'll scroll"
     var controls = '.sm-dock, .sm-choice, .sm-mini, dialog, #slide-nav';
